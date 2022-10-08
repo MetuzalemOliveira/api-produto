@@ -22,11 +22,8 @@ pipeline {
         }
      }
        stage('SonarQube analysis') {
-
 			withSonarQubeEnv('sonarqube') {
-
-				sh 'mvn sonar:sonar -Dsonar.projectKey=Altaconexao -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.login=d14daa42e1e410818fdfca9fdb26a194afa93b5f'
-
-		} 
+				sh 'mvn sonar:sonar -Dsonar.projectKey=Altaconexao -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d14daa42e1e410818fdfca9fdb26a194afa93b5f'
+	} 
      }
   }
