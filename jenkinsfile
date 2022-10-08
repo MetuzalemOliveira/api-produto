@@ -20,13 +20,13 @@ pipeline {
                 }
             }
         }
-        stage ("Deploy Kubernete") {
-            steps {
-                withKubeConfig([credentialsId: 'kubeconfig']) {
-                    sh 'sed -i "s/{{tag}}/$tag_version/g" ./k8s/deployment.yaml'
-                    sh 'kubectl apply -f ./k8s/deployment.yaml'
-                }
-            }
-        }
+     }
+       stage('SonarQube analysis') {
+
+			withSonarQubeEnv('sonarqube') {
+
+				sh 'mvn sonar:sonar -Dsonar.projectKey=Altaconexao -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.login=d14daa42e1e410818fdfca9fdb26a194afa93b5f'
+
+		} 
      }
   }
